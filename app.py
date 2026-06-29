@@ -9,10 +9,12 @@ def download_video():
     if not video_url:
         return jsonify({'code': 1, 'msg': 'URL is required!'}), 400
 
+    # এখানে cookies.txt যুক্ত করা হয়েছে
     ydl_opts = {
         'format': 'best',
         'quiet': True,
         'no_warnings': True,
+        'cookiefile': 'cookies.txt', 
     }
 
     try:
