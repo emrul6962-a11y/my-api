@@ -23,7 +23,8 @@ def download_video():
     cookie_path = os.path.abspath("cookies.txt")
 
     ydl_opts = {
-        'format': 'best',
+        # এখানে ফরম্যাটটি আপডেট করা হয়েছে যাতে সব ভিডিও কাজ করে
+        'format': 'bestvideo+bestaudio/best', 
         'quiet': True,
         'no_warnings': True,
         'cookiefile': cookie_path if os.path.exists(cookie_path) else None,
@@ -35,7 +36,7 @@ def download_video():
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             info = ydl.extract_info(video_url, download=False)
             
-            # লিঙ্ক খুঁজে পাওয়ার নতুন লজিক
+            # লিঙ্ক খুঁজে পাওয়ার লজিক
             direct_link = info.get('url') or (info.get('formats')[0].get('url') if info.get('formats') else None)
             title = info.get('title', 'Social Media Video')
             thumbnail = info.get('thumbnail', 'https://img.freepik.com/free-vector/facebook-icon-vector-illustration_53876-161642.jpg')
